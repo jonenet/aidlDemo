@@ -24,24 +24,25 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private MyConnection myConnection;
+    private View.OnClickListener l = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            //从 Android 5.0开始 隐式Intent绑定服务的方式已不能使用,所以这里需要设置Service所在服务端的包名
+            ComponentName componentName = new ComponentName("com.example.aidlserver", "com.example.aidlserver.service.CalService");
+            intent.setAction("com.example.aidlserver.action");
+            intent.setComponent(componentName);
+            startService(intent);
+            myConnection = new MyConnection();
+            bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.tv_service).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                //从 Android 5.0开始 隐式Intent绑定服务的方式已不能使用,所以这里需要设置Service所在服务端的包名
-                ComponentName componentName = new ComponentName("com.example.aidlserver", "com.example.aidlserver.service.CalService");
-                intent.setAction("com.example.aidlserver.action");
-                intent.setComponent(componentName);
-                startService(intent);
-                myConnection = new MyConnection();
-                bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
-            }
-        });
+        findViewById(R.id.tv_service).setOnClickListener(l);
 
     }
 
@@ -60,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(TAG, "onServiceConnected: " + person);
                 }
                 Log.e(TAG, "onServiceConnected: " + cal);
+
+                //其实这个例子可以看到 aidl 对象可以携带 Parcelable 对象
                 IMyCallbackListener callbackListener = iAidlComputer.getCallbackListener();
+//              调用 stub 的 getCallbackListener 其实就是调用服务器端的 getCallbackListener
+
                 if (null != callbackListener) {
                     Person person1 = callbackListener.getPerson();
                     person1.setAge(16);
