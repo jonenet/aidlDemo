@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/aidlDemo.iml" filepath="$PROJECT_DIR$/aidlDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/aidlDemo.iml" filepath="$PROJECT_DIR$/.idea/aidlDemo.iml" />
+      <module fileurl="file://D:\DEVSource\MyApp\MyWorkSpace01\FirstSpace\ProjectTest01GitMaster\aidlDemo\aidlDemo.iml" filepath="D:\DEVSource\MyApp\MyWorkSpace01\FirstSpace\ProjectTest01GitMaster\aidlDemo\aidlDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/aidlclient/aidlclient.iml" filepath="$PROJECT_DIR$/aidlclient/aidlclient.iml" />
+      <module fileurl="file://D:\DEVSource\MyApp\MyWorkSpace01\FirstSpace\ProjectTest01GitMaster\aidlDemo\aidlclient\aidlclient.iml" filepath="D:\DEVSource\MyApp\MyWorkSpace01\FirstSpace\ProjectTest01GitMaster\aidlDemo\aidlclient\aidlclient.iml" />
       <module fileurl="file://$PROJECT_DIR$/aidlserver/aidlserver.iml" filepath="$PROJECT_DIR$/aidlserver/aidlserver.iml" />
+      <module fileurl="file://D:\DEVSource\MyApp\MyWorkSpace01\FirstSpace\ProjectTest01GitMaster\aidlDemo\aidlserver\aidlserver.iml" filepath="D:\DEVSource\MyApp\MyWorkSpace01\FirstSpace\ProjectTest01GitMaster\aidlDemo\aidlserver\aidlserver.iml" />
     </modules>
   </component>
 </project>

@@ -16,9 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".service.CalService" >
+        <service android:name=".service.CalService"
+            android:enabled="true"
+            android:exported="true"
+            >
             <intent-filter>
-                <action android:name="server.computer.aidlaction"/>
+                <action android:name="com.example.aidlserver.action"/>
 
             </intent-filter>
         </service>
