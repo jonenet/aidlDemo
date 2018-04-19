@@ -15,6 +15,7 @@ import android.view.View;
 
 import com.example.aidlserver.IAidlComputer;
 import com.example.aidlserver.bean.Person;
+import com.example.aidlserver.callback.IMyCallbackListener;
 
 import java.util.List;
 
@@ -59,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(TAG, "onServiceConnected: " + person);
                 }
                 Log.e(TAG, "onServiceConnected: " + cal);
+                IMyCallbackListener callbackListener = iAidlComputer.getCallbackListener();
+                if (null != callbackListener) {
+                    Person person1 = callbackListener.getPerson();
+                    person1.setAge(16);
+                    person1.setName("fiona");
+                    callbackListener.setPerson(person1);
+                }
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

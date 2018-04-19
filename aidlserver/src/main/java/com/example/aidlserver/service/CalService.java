@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.example.aidlserver.IAidlComputer;
 import com.example.aidlserver.bean.Person;
+import com.example.aidlserver.callback.IMyCallbackListener;
 
 /**
  * Description:
@@ -16,6 +18,8 @@ import com.example.aidlserver.bean.Person;
  */
 
 public class CalService extends Service {
+
+    private static final String TAG = "CalService";
 
     @Nullable
     @Override
@@ -39,6 +43,23 @@ public class CalService extends Service {
             person.setAge(18);
             person.setName("jone");
             return person;
+        }
+
+        @Override
+        public IMyCallbackListener getCallbackListener() throws RemoteException {
+            return new IMyCallbackListener.Stub() {
+                @Override
+                public void setData(Person person) throws RemoteException {
+                    Log.e(TAG, "setData: " + person);
+                }
+
+
+                @Override
+                public Person getPerson() throws RemoteException {
+                    return new Person();
+                }
+            };
+
         }
 
 //        @Override
